@@ -1,0 +1,32 @@
+{
+    "name": "dhcpd",
+    "title": "dhcpd",
+    "version": "0.0.0",
+    "homepage": "https://github.com/infusion/DHCPD.js",
+    "bugs": "https://github.com/infusion/DHCPD.js/issues",
+    "description": "A DHCP server written in JavaScript",
+    "keywords": ["dhcp", "server", "daemon", "net", "bootp", "dhclient", "udp"],
+    "author": "Robert Eisele <robert@xarg.org> (http://www.xarg.org/)",
+    "main": "dhcpd",
+    "private": false,
+    "readmeFilename": "README.md",
+    "directories": {
+        "example": "examples"
+    },
+    "license": "MIT OR GPL-2.0",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/infusion/DHCP.js.git"
+    },
+    "engines": {
+        "node": "*"
+    },
+    "scripts": {
+        "test": "mocha tests/*.js"
+    },
+    "devDependencies": {
+        "mocha": "*",
+        "should": "*",
+        "gulp": "*"
+    }
+}
