@@ -1,13 +1,13 @@
 {
-    "name": "dhcpd",
-    "title": "dhcpd",
+    "name": "dhcp",
+    "title": "dhcp",
     "version": "0.0.0",
     "homepage": "https://github.com/infusion/DHCP.js",
     "bugs": "https://github.com/infusion/DHCP.js/issues",
     "description": "A DHCP server written in JavaScript",
     "keywords": ["dhcp", "server", "daemon", "net", "bootp", "dhclient", "udp"],
     "author": "Robert Eisele <robert@xarg.org> (http://www.xarg.org/)",
-    "main": "dhcpd",
+    "main": "dhcp",
     "private": false,
     "readmeFilename": "README.md",
     "directories": {

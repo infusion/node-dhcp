@@ -1,5 +1,5 @@
 
-![DHCPD.js](https://github.com/infusion/DHCPD.js/blob/master/res/logo.png?raw=true "JavaScript DHCP Server")
+![DHCPD.js](https://github.com/infusion/DHCP.js/blob/master/res/logo.png?raw=true "JavaScript DHCP Server")
 
 DHCP.js is a DHCP server written in pure JavaScript.
 
@@ -15,7 +15,7 @@ Installation
 Installing DHCP.js is as easy as cloning this repo or use npmjs:
 
 ```bash
-npm install --save dhcpd
+npm install --save dhcp
 ```
 
 Testing
@@ -28,5 +28,5 @@ npm test
 
 Copyright and licensing
 ===
-Copyright (c) 2016, [Robert Eisele](http://www.xarg.org/)
+Copyright (c) 2017, [Robert Eisele](http://www.xarg.org/)
 Dual licensed under the MIT or GPL Version 2 licenses.
