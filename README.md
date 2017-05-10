@@ -1,7 +1,7 @@
 
 ![DHCPD.js](https://github.com/infusion/DHCPD.js/blob/master/res/logo.png?raw=true "JavaScript DHCP Server")
 
-DHCPD is a DHCP server written in pure JavaScript.
+DHCP.js is a DHCP server written in pure JavaScript.
 
 Usage
 ===
@@ -12,7 +12,7 @@ Usage
 
 Installation
 ===
-Installing DHCPD.js is as easy as cloning this repo or use npmjs:
+Installing DHCP.js is as easy as cloning this repo or use npmjs:
 
 ```bash
 npm install --save dhcpd
