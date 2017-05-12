@@ -233,22 +233,21 @@ describe('Segbuffer', function () {
 
     var sb = new SeqBuffer(null, 20);
 
-    sb.addIPs(["1.2.3.4", "8.8.8.8"]);
+    sb.addIPs(["1.2.3.4", "8.8.8.8", "192.255.238.238"]);
 
     sb._r.should.be.equal(0);
-    sb._w.should.be.equal(8);
+    sb._w.should.be.equal(12);
 
-    sb._data.compare(new Buffer([1, 2, 3, 4, 8, 8, 8, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])).should.be.equal(0);
-
+    sb._data.compare(new Buffer([1, 2, 3, 4, 8, 8, 8, 8, 192, 255, 238, 238, 0, 0, 0, 0, 0, 0, 0, 0])).should.be.equal(0);
   });
 
   it('should get IPs', function () {
 
-    var sb = new SeqBuffer(new Buffer([1, 2, 3, 4, 8, 8, 8, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
+    var sb = new SeqBuffer(new Buffer([1, 2, 3, 4, 8, 8, 8, 8, 192, 255, 238, 238, 0, 0, 0, 0, 0, 0, 0, 0]));
 
-    sb.getIPs(8).toString().should.be.equal(["1.2.3.4", "8.8.8.8"].toString());
+    sb.getIPs(12).toString().should.be.equal(["1.2.3.4", "8.8.8.8", "192.255.238.238"].toString());
 
-    sb._r.should.be.equal(8);
+    sb._r.should.be.equal(12);
     sb._w.should.be.equal(0);
   });
 
@@ -265,13 +264,39 @@ describe('Segbuffer', function () {
 
   });
 
+  it('should add Mac with offsetted word', function () {
+
+    var sb = new SeqBuffer(null, 20);
+
+    sb.addUInt16(4);
+
+    sb.addMac("1-2-3-4-5-6");
+
+    sb._r.should.be.equal(0);
+    sb._w.should.be.equal(18);
+
+    sb._data.compare(new Buffer([0, 4, 1, 2, 3, 4, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])).should.be.equal(0);
+  });
+
   it('should get Mac', function () {
 
     var sb = new SeqBuffer(new Buffer([1, 2, 3, 4, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
 
-    sb.getMAC(6).should.be.equal("01-02-03-04-05-06");
+    sb.getMAC().should.be.equal("01-02-03-04-05-06");
 
     sb._r.should.be.equal(16);
+    sb._w.should.be.equal(0);
+  });
+
+  it('should get Mac with offsetted byte', function () {
+
+    var sb = new SeqBuffer(new Buffer([0, 0xff, 0xff, 0xff, 0xff, 0xce, 0xff, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
+
+    sb.getUInt8();
+
+    sb.getMAC().should.be.equal("FF-FF-FF-FF-CE-FF");
+
+    sb._r.should.be.equal(17);
     sb._w.should.be.equal(0);
   });
 
