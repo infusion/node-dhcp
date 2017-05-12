@@ -5,7 +5,7 @@
     "homepage": "https://github.com/infusion/DHCP.js",
     "bugs": "https://github.com/infusion/DHCP.js/issues",
     "description": "A DHCP server written in JavaScript",
-    "keywords": ["dhcp", "server", "daemon", "net", "bootp", "dhclient", "udp"],
+    "keywords": ["dhcp","network", "server", "daemon", "ip", "ethernet", "net", "bootp", "dhclient", "udp"],
     "author": "Robert Eisele <robert@xarg.org> (http://www.xarg.org/)",
     "main": "dhcp",
     "private": false,
@@ -26,7 +26,6 @@
     },
     "devDependencies": {
         "mocha": "*",
-        "should": "*",
-        "gulp": "*"
+        "should": "*"
     }
 }
