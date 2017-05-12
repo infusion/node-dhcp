@@ -13,7 +13,7 @@ var s = dhcpd.createServer([{
     _: "unknownClients", // all unknown (not falling into static) clients will go into this pool
     name: /raspberry/
   },
-  option: {
+  config: {
     router: [
       '192.168.0.1'
     ],
@@ -28,9 +28,15 @@ var s = dhcpd.createServer([{
     maxMessageSize: 1500,
     renewalTime: 60,
     rebindingTime: 120,
-    //filename: "blub",
-    //nextServer: "bla.com",
     randomIP: true, // Get random new IP from pool instead of keeping one ip
+    bootFile: function (req) {
+
+      if (req.clientId === 'foo bar') {
+        return 'x86linux.0';
+      } else {
+        return 'x64linux.0';
+      }
+    }
   }
 }]);
 
