@@ -13,6 +13,52 @@ const DHCPDECLINE = 4;
 const DHCPACK = 5;
 const DHCPNAK = 6;
 const DHCPRELEASE = 7;
+const DHCPINFORM = 8;
+
+
+_getOptionFromConfig = function (confName) {
+
+  // TODO: make this an O(1) lookup
+  for (var o in Options) {
+    if (Options[o].config === confName) {
+      return o;
+    }
+  }
+  return null;
+};
+
+function parseIp(str) {
+  var octs = str.split(".");
+  var num = 0;
+
+  if (octs.length !== 4) {
+    throw new Error('Invalid IP address ' + str);
+  }
+
+  octs.forEach(function (val) {
+    val = parseInt(val, 10);
+
+    if (0 <= val && val < 256) {
+      num <<= 8;
+      num |= val;
+    } else {
+      throw new Error('Invalid IP address ' + str);
+    }
+  });
+}
+
+function formatIp(num) {
+  var ip = "";
+
+  for (var i = 3; i >= 0; i--) {
+
+    if (ip)
+      ip += ".";
+
+    ip += ((num >>> (i * 8)) & 0xFF).toString(10);
+  }
+  return ip;
+}
 
 function Server(settings) {
 
@@ -23,16 +69,59 @@ function Server(settings) {
 
   settings = settings || {};
 
-  sock.on('message', function (buf) {
 
-    var msg = self._parse(buf);
+  // Ducktyping for the moment
+  settings.get = function (conf) {
 
-    if (!msg.options[53]) {
-      self.emit("error", new Error("Got message, without valid message type"), msg);
-      return;
+    var val;
+    var optId = _getOptionFromConfig(conf);
+
+    // If config setting is set by user
+    if (this[conf] !== undefined) {
+      val = this[conf];
+    } else {
+
+      // Search for default values
+      if (Options[optId] !== undefined) {
+        val = Options[optId].default;
+        if (val === undefined) {
+          return null;
+        }
+      } else {
+        // TODO: report
+      }
     }
 
-    self._send('255.255.255.255', self._answer(msg, settings));
+    // If a function was provided
+    if (val instanceof Function) {
+      val = val.call({
+        config: settings,
+        parseIp: parseIp,
+        formatIp: formatIp
+      });
+    }
+
+    // If it's a string value and the option has a "values" attribute:
+    if (typeof val === "string" && Option[optId].values) {
+      var values = Option[optId].values;
+      for (var i in values) {
+        if (values[i] === val) {
+          return parseInt(i, 10);
+        }
+      }
+    }
+    return val;
+  };
+
+  sock.on('message', function (buf) {
+
+    var req = self._parse(buf);
+
+    if (!req.options[53]) {
+      self.emit("error", new Error("Got message, without valid message type"), req);
+      return;
+    }
+    self._answer(req, settings);
   });
 
   sock.on('listening', function () {
@@ -53,74 +142,97 @@ Server.prototype = {
 
   },
 
-  _answer: function (msg, settings) {
+  _answer: function (req, settings) {
 
-    var opts;
+    var force = settings.get('forceOptions');
+    var type = req.options[53];
+    var requestedParams = req.options[55];
+    var params = {};
 
-    var type = Options[53].values[msg.options[53]];
-
-    console.log(type)
-
-    if (msg.options[53] == DHCPDISCOVER) {
-
-      opts = {
-        53: DHCPOFFER,
-
-        1: '255.255.255.0', // Subnet mask
-        28: '192.168.33.255', // Broadcast
-
-        3: ['192.168.33.2'], // Router
-
-        12: "miau", // hostname
-
-        6: ['8.8.8.8', '8.8.4.4'], // DNS servers   
-
-        51: 86400, // IP lease time
-        54: '192.168.33.2', // DHCP server
-
-        58: 60, // Renewal time
-        59: 120 // Rebinding time
-      };
-    } else {
-      opts = {
-        53: DHCPACK,
-
-        1: '255.255.255.0', // Subnet mask
-        28: '192.168.33.255', // Broadcast
-
-        3: ['192.168.33.2'], // Router
-
-        12: "miau", // hostname
-
-        6: ['8.8.8.8', '8.8.4.4'], // DNS servers   
-
-        51: 86400, // IP lease time
-        54: '192.168.33.2', // DHCP server
-
-        58: 60, // Renewal time
-        59: 120 // Rebinding time
-      };
+    // Add all parameters the client wants 
+    for (var i = 0; i < requestedParams.length; i++) {
+      params[requestedParams[i]] = null;
     }
 
+    // Add all parameter the user forces
+    if (force instanceof Array) {
+      for (var i = 0; i < force.length; i++) {
+
+        var id = _getOptionFromConfig(force[i]);
+        if (id !== null) {
+
+        } else {
+          this.emit("error", "Unknown config force option", force[i]);
+        }
+      }
+    } else if (force !== undefined) {
+      this.emit("error", "Invalid forceOptions value", force);
+    }
+
+    // Formulate an options object
+    var opts = this._getOptions(type, settings, params);
+
+    // Formulate the response object
     var ans = {
       op: 2, // Reply
-      htype: msg.htype,
-      hlen: msg.hlen,
-      hops: msg.hops,
-      xid: msg.xid,
-      secs: msg.secs,
+      htype: req.htype,
+      hlen: req.hlen,
+      hops: req.hops,
+      xid: req.xid,
+      secs: req.secs,
       flags: 0,
-      ciaddr: msg.ciaddr,
-      yiaddr: '192.168.33.55', // my offer
-      siaddr: '192.168.33.2', // server ip
-      giaddr: msg.giaddr,
-      chaddr: msg.chaddr,
+      ciaddr: req.ciaddr,
+      yiaddr: this._chooseIp(settings), // my offer
+      siaddr: settings.get('server'), // server ip
+      giaddr: req.giaddr,
+      chaddr: req.chaddr,
       sname: "",
       file: "",
       options: opts
     };
 
-    return ans;
+    // Send the actual data
+    this._send('255.255.255.255', ans);
+  },
+
+  _chooseIp: function (settings) {
+
+    // 1. Hat es static binding?
+
+    // 2. Welche IP will der client?
+    //    -> ist randomIP an?
+    //         ja: gib zufällige ip aus range
+    //         nein: ist gewünschte IP verfügbar?
+    //               ja: done
+    //               nein: gib zufällige ip aus range
+
+    return '192.168.33.55';
+
+  },
+
+  _getOptions: function (type, settings, params) {
+
+
+    // Get the options config ready
+    var ret = {};
+    for (var i in params) {
+
+      if (Options[i] === undefined) {
+        this.emit('error', 'Unknown option ' + i);
+      } else {
+        ret[i] = settings.get(Options[i].config);
+      }
+    }
+
+    // Add message type
+    switch (type) {
+      case DHCPDISCOVER:
+        ret[53] = DHCPOFFER;
+        break;
+      default: // temporary
+        ret[53] = DHCPACK;
+    }
+    return ret;
   },
 
   _send: function (ip, data) {
