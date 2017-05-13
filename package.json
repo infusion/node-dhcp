@@ -1,31 +1,49 @@
 {
-    "name": "dhcp",
-    "title": "dhcp",
-    "version": "0.0.0",
-    "homepage": "https://github.com/infusion/DHCP.js",
-    "bugs": "https://github.com/infusion/DHCP.js/issues",
-    "description": "A DHCP server written in JavaScript",
-    "keywords": ["dhcp","network", "server", "daemon", "ip", "ethernet", "net", "bootp", "dhclient", "udp"],
-    "author": "Robert Eisele <robert@xarg.org> (http://www.xarg.org/)",
-    "main": "dhcp",
-    "private": false,
-    "readmeFilename": "README.md",
-    "directories": {
-        "example": "examples"
-    },
-    "license": "MIT OR GPL-2.0",
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/infusion/DHCP.js.git"
-    },
-    "engines": {
-        "node": "*"
-    },
-    "scripts": {
-        "test": "mocha tests/*.js"
-    },
-    "devDependencies": {
-        "mocha": "*",
-        "should": "*"
-    }
+  "name": "dhcp",
+  "title": "dhcp",
+  "version": "0.0.0",
+  "homepage": "https://github.com/infusion/DHCP.js",
+  "bugs": "https://github.com/infusion/DHCP.js/issues",
+  "description": "A DHCP server written in JavaScript",
+  "keywords": [
+    "dhcp",
+    "network",
+    "server",
+    "daemon",
+    "ip",
+    "ethernet",
+    "net",
+    "bootp",
+    "dhclient",
+    "udp"
+  ],
+  "author": "Robert Eisele <robert@xarg.org> (http://www.xarg.org/)",
+  "main": "dhcp",
+  "private": false,
+  "readmeFilename": "README.md",
+  "directories": {
+    "example": "examples"
+  },
+  "license": "MIT OR GPL-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/infusion/DHCP.js.git"
+  },
+  "bin": {
+    "dhcp": "./bin/dhcp-cli.js",
+    "dhcpd": "./bin/dhcp-cli.js"
+  },
+  "engines": {
+    "node": "*"
+  },
+  "scripts": {
+    "test": "mocha tests/*.js"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "dependencies": {
+    "minimist": "*"
+  }
 }
