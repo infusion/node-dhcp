@@ -341,10 +341,10 @@ describe('Segbuffer', function () {
 
   it('should add mixed options - 2nd', function () {
 
-    var sb = new SeqBuffer(null, 20);
+    var sb = new SeqBuffer(null, 21);
 
     sb.addOptions({
-      145: true,
+      145: [1, 2, 3],
       80: false,
       56: "whoo",
       57: 96,
@@ -356,8 +356,7 @@ describe('Segbuffer', function () {
       54, 4, 192, 168, 2, 2,
       56, 4, 119, 104, 111, 111,
       57, 2, 0, 96,
-      145, 0,
-      0, 0])).should.be.equal(0);
+      145, 3, 1, 2, 3])).should.be.equal(0);
   });
 
   it('should get mixed options - 2st', function () {
@@ -366,17 +365,17 @@ describe('Segbuffer', function () {
       54, 4, 192, 168, 2, 2,
       56, 4, 119, 104, 111, 111,
       57, 2, 0, 96,
-      145, 0,
+      145, 3, 1, 2, 3,
       255, 0]));
 
     sb.getOptions().should.deepEqual({
-      145: true,
+      145: [1, 2, 3],
       56: "whoo",
       57: 96,
       54: "192.168.2.2"
     });
 
-    sb._r.should.be.equal(19);
+    sb._r.should.be.equal(22);
     sb._w.should.be.equal(0);
   });
 
