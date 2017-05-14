@@ -379,6 +379,17 @@ describe('Segbuffer', function () {
     sb._w.should.be.equal(0);
   });
 
+  it('should add nothing for empty options', function () {
+
+    var sb = new SeqBuffer(new Buffer(20).fill(32));
+
+    sb.addOptions({
+      /* void */
+    });
+
+    sb._data.compare(new Buffer(20).fill(32)).should.be.equal(0);
+  });
+
   it('should get hex correctly', function () {
 
     var sb = new SeqBuffer(new Buffer([1, 2, 3, 4, 5, 6, 7, 8, 9]));
