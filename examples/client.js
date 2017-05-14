@@ -1,5 +1,4 @@
-// Global installierbarer daemon
-// 
+
 var dhcp = require('../dhcp.js');
 
 var s = dhcp.createClient();

@@ -47,10 +47,8 @@ if (path.basename(process.argv[1]).slice(-1) === 'd') {
 
   var client = dhcp.createClient();
   
-  client.sendDiscover();
-  
   client.listen();
 
-
+  client.sendDiscover();
 
 }
