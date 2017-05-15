@@ -1,7 +1,7 @@
 
 ![DHCPD.js](https://github.com/infusion/DHCP.js/blob/master/res/logo.png?raw=true "JavaScript DHCP Server")
 
-DHCP.js is a DHCP server written in pure JavaScript.
+DHCP.js is a RFC compliant DHCP client and server implementation on top of node.js.
 
 Usage
 ===
@@ -26,7 +26,7 @@ Testing
 ===
 If you plan to enhance the library, make sure you add test cases and all the previous tests are passing. You can test the library with
 
-```
+```bash
 npm test
 ```
 
