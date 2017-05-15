@@ -3,6 +3,15 @@
 
 DHCP.js is a RFC compliant DHCP client and server implementation on top of node.js.
 
+
+Introduction
+===
+
+
+
+
+
+
 Usage
 ===
 
@@ -22,13 +31,12 @@ Installing DHCP.js is as easy as cloning this repo or use npmjs:
 npm install --save dhcp
 ```
 
-Testing
-===
-If you plan to enhance the library, make sure you add test cases and all the previous tests are passing. You can test the library with
+If command line tools `dhcp` and `dhcpd` shall be installed, npmjs can be used as well:
 
 ```bash
-npm test
+npm install dhcp -g
 ```
+
 
 Troubleshooting
 ===
@@ -45,6 +53,14 @@ OS-X
 ---
 ```bash
 sudo route add -host 255.255.255.255 -interface en4 
+```
+
+Testing
+===
+If you plan to enhance the library, make sure you add test cases and all the previous tests are passing. You can test the library with
+
+```bash
+npm test
 ```
 
 Copyright and licensing

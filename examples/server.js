@@ -1,5 +1,5 @@
 
-var dhcpd = require('../dhcp.js');
+var dhcpd = require('../lib/dhcp.js');
 
 var s = dhcpd.createServer({
   // System settings
