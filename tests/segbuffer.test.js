@@ -151,12 +151,12 @@ describe('Segbuffer', function () {
 
     var sb = new SeqBuffer(null, 20);
 
-    sb.addASCII("");
+    sb.addASCII('');
 
     sb._r.should.be.equal(0);
     sb._w.should.be.equal(0);
 
-    sb.addASCII("abc");
+    sb.addASCII('abc');
 
     sb._r.should.be.equal(0);
     sb._w.should.be.equal(3);
@@ -169,7 +169,7 @@ describe('Segbuffer', function () {
 
     var sb = new SeqBuffer(new Buffer([97, 98, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
 
-    sb.getASCII(3).should.be.equal("abc");
+    sb.getASCII(3).should.be.equal('abc');
 
     sb._r.should.be.equal(3);
     sb._w.should.be.equal(0);
@@ -179,12 +179,12 @@ describe('Segbuffer', function () {
 
     var sb = new SeqBuffer(null, 20);
 
-    sb.addUTF8("");
+    sb.addUTF8('');
 
     sb._r.should.be.equal(0);
     sb._w.should.be.equal(0);
 
-    sb.addUTF8("i❤u");
+    sb.addUTF8('i❤u');
 
     sb._r.should.be.equal(0);
     sb._w.should.be.equal(5);
@@ -197,7 +197,7 @@ describe('Segbuffer', function () {
 
     var sb = new SeqBuffer(new Buffer([0x69, 0xe2, 0x9d, 0xa4, 0x75, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
 
-    sb.getUTF8(5).should.be.equal("i❤u");
+    sb.getUTF8(5).should.be.equal('i❤u');
 
     sb._r.should.be.equal(5);
     sb._w.should.be.equal(0);
@@ -205,12 +205,12 @@ describe('Segbuffer', function () {
 
   it('should work with fixed string', function () {
 
-    var sb = new SeqBuffer(Buffer.from("abcdefghij"));
+    var sb = new SeqBuffer(Buffer.from('abcdefghij'));
 
     sb._r.should.be.equal(0);
     sb._w.should.be.equal(0);
 
-    sb.addASCII("pqs", 8);
+    sb.addASCII('pqs', 8);
 
     sb._r.should.be.equal(0);
     sb._w.should.be.equal(8);
@@ -221,7 +221,7 @@ describe('Segbuffer', function () {
     sb._w = 0;
 
     // Same with UTF8
-    sb.addUTF8("pqs", 8);
+    sb.addUTF8('pqs', 8);
 
     sb._r.should.be.equal(0);
     sb._w.should.be.equal(8);
@@ -233,7 +233,7 @@ describe('Segbuffer', function () {
 
     var sb = new SeqBuffer(null, 20);
 
-    sb.addIPs(["1.2.3.4", "8.8.8.8", "192.255.238.238"]);
+    sb.addIPs(['1.2.3.4', '8.8.8.8', '192.255.238.238']);
 
     sb._r.should.be.equal(0);
     sb._w.should.be.equal(12);
@@ -245,7 +245,7 @@ describe('Segbuffer', function () {
 
     var sb = new SeqBuffer(new Buffer([1, 2, 3, 4, 8, 8, 8, 8, 192, 255, 238, 238, 0, 0, 0, 0, 0, 0, 0, 0]));
 
-    sb.getIPs(12).toString().should.be.equal(["1.2.3.4", "8.8.8.8", "192.255.238.238"].toString());
+    sb.getIPs(12).toString().should.be.equal(['1.2.3.4', '8.8.8.8', '192.255.238.238'].toString());
 
     sb._r.should.be.equal(12);
     sb._w.should.be.equal(0);
@@ -255,7 +255,7 @@ describe('Segbuffer', function () {
 
     var sb = new SeqBuffer(null, 20);
 
-    sb.addMac("1-2-3-4-5-6");
+    sb.addMac('1-2-3-4-5-6');
 
     sb._r.should.be.equal(0);
     sb._w.should.be.equal(16);
@@ -270,7 +270,7 @@ describe('Segbuffer', function () {
 
     sb.addUInt16(4);
 
-    sb.addMac("1-2-3-4-5-6");
+    sb.addMac('1-2-3-4-5-6');
 
     sb._r.should.be.equal(0);
     sb._w.should.be.equal(18);
@@ -282,7 +282,7 @@ describe('Segbuffer', function () {
 
     var sb = new SeqBuffer(new Buffer([1, 2, 3, 4, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
 
-    sb.getMAC().should.be.equal("01-02-03-04-05-06");
+    sb.getMAC().should.be.equal('01-02-03-04-05-06');
 
     sb._r.should.be.equal(16);
     sb._w.should.be.equal(0);
@@ -294,7 +294,7 @@ describe('Segbuffer', function () {
 
     sb.getUInt8();
 
-    sb.getMAC().should.be.equal("FF-FF-FF-FF-CE-FF");
+    sb.getMAC().should.be.equal('FF-FF-FF-FF-CE-FF');
 
     sb._r.should.be.equal(17);
     sb._w.should.be.equal(0);
@@ -305,10 +305,10 @@ describe('Segbuffer', function () {
     var sb = new SeqBuffer(null, 30);
 
     sb.addOptions({
-      1: "1.2.3.4",
+      1: '1.2.3.4',
       2: 99,
-      3: "192.168.0.1",
-      4: ["192.168.2.2", "66.55.44.33"]
+      3: '192.168.0.1',
+      4: ['192.168.2.2', '66.55.44.33']
     });
 
     sb._data.compare(new Buffer([
@@ -346,10 +346,10 @@ describe('Segbuffer', function () {
     sb.addOptions({
       145: [1, 2, 3],
       80: false,
-      56: "whoo",
+      56: 'whoo',
       57: 96,
-      12: "",
-      54: "192.168.2.2"
+      12: '',
+      54: '192.168.2.2'
     });
 
     sb._data.compare(new Buffer([
@@ -370,9 +370,9 @@ describe('Segbuffer', function () {
 
     sb.getOptions().should.deepEqual({
       145: [1, 2, 3],
-      56: "whoo",
+      56: 'whoo',
       57: 96,
-      54: "192.168.2.2"
+      54: '192.168.2.2'
     });
 
     sb._r.should.be.equal(22);
@@ -423,7 +423,7 @@ describe('Segbuffer', function () {
     sb.getInt8().should.be.equal(2);
     sb.getInt8().should.be.equal(3);
 
-    sb.getHex(5).should.be.equal("0405060708");
+    sb.getHex(5).should.be.equal('0405060708');
 
     sb.getInt8().should.be.equal(9);
 

@@ -7,11 +7,11 @@ s.on('message', function (data) {
   console.log(data);
 });
 
-s.on("error", function (err, data) {
+s.on('error', function (err, data) {
   console.log(err, data);
 });
 
-s.on("listening", function (sock) {
+s.on('listening', function (sock) {
   var address = sock.address();
   console.info('Client Listening: ' + address.address + ':' + address.port);
 });

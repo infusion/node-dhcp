@@ -1,5 +1,4 @@
-// Global installierbarer daemon
-// 
+
 var dhcpd = require('../dhcp.js');
 
 var s = dhcpd.createServer({

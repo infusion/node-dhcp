@@ -18,21 +18,21 @@ if (path.basename(process.argv[1]).slice(-1) === 'd') {
     if (arg === '_') {
       /* void */
     } else if (arg === 'range') {
-      opts.range = argv[arg].split("-");
+      opts.range = argv[arg].split('-');
     } else if (Options.conf[arg] !== undefined) {
 
       if (argv[arg]) {
         opts[arg] = argv[arg];
       } else {
-        console.error("Argument " + arg + " needs a value.");
+        console.error('Argument ' + arg + ' needs a value.');
         process.exit();
       }
 
     } else if (arg === 'help') {
-      console.log("Usage:\n\tdhcpd --range 192.168.0.1-192.168.0.99 --option1 value1 --option2 value2 ...");
+      console.log('Usage:\n\tdhcpd --range 192.168.0.1-192.168.0.99 --option1 value1 --option2 value2 ...');
       process.exit();
     } else {
-      console.error("Invalid argument " + arg);
+      console.error('Invalid argument ' + arg);
       process.exit();
     }
   }
