@@ -10,6 +10,10 @@ Usage
 
 
 
+
+
+
+
 Installation
 ===
 Installing DHCP.js is as easy as cloning this repo or use npmjs:
@@ -24,6 +28,23 @@ If you plan to enhance the library, make sure you add test cases and all the pre
 
 ```
 npm test
+```
+
+Troubleshooting
+===
+
+A broadcast is typically not spread across all interfaces. In order to route the broadcast to a specific interface, you can reroute 255.255.255.255.
+
+Linux
+---
+```bash
+route add -host 255.255.255.255 dev eth0
+```
+
+OS-X
+---
+```bash
+sudo route add -host 255.255.255.255 -interface en4 
 ```
 
 Copyright and licensing

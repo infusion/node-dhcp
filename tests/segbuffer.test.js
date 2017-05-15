@@ -379,6 +379,31 @@ describe('Segbuffer', function () {
     sb._w.should.be.equal(0);
   });
 
+  it('should add UInt16s options', function () {
+
+    var sb = new SeqBuffer(null, 10);
+
+    sb.addOptions({
+      25: [1, 2, 3]
+    });
+
+    sb._data.compare(new Buffer([
+      25, 6, 0, 1, 0, 2, 0, 3, 0, 0])).should.be.equal(0);
+  });
+  
+    it('should get UInt16s options', function () {
+
+    var sb = new SeqBuffer(new Buffer([
+      25, 6, 0, 1, 0, 2, 0, 3, 0, 0]));
+
+    sb.getOptions().should.deepEqual({
+      25: [1, 2, 3]
+    });
+
+    sb._r.should.be.equal(10);
+    sb._w.should.be.equal(0);
+  });
+
   it('should add nothing for empty options', function () {
 
     var sb = new SeqBuffer(new Buffer(20).fill(32));
