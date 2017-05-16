@@ -15,7 +15,9 @@ In times of **home automation** and **IoT**, I was thinking of a solution, which
 
 Another problem I had was, I wanted to query DHCP servers without actually change the local configuration.
 
-These problems were the trigger to start reading the RFC's and the protocol is really not that complicated. As such, this project was born. 
+These problems were the trigger to start reading the RFC's and the protocol is really not that complicated. As such, this project was born.
+
+Remark: By nature, network services are quite complex, so please test, test, test!
 
 
 Usage

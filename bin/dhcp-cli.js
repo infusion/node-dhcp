@@ -8,6 +8,7 @@ var Options = require('../lib/options.js');
 var argv = require('minimist')(process.argv.slice(2));
 
 var opts = {};
+var force = []; // We force all options here, since the user explicitly stated the option
 
 if (path.basename(process.argv[1]).slice(-1) === 'd') {
 
@@ -21,8 +22,10 @@ if (path.basename(process.argv[1]).slice(-1) === 'd') {
       opts.range = argv[arg].split('-');
     } else if (Options.conf[arg] !== undefined) {
 
-      if (argv[arg]) {
+      // If value is missing, minimist simply makes it true/false
+      if (typeof argv[arg] !== 'boolean') {
         opts[arg] = argv[arg];
+        force.push(argv[arg]);
       } else {
         console.error('Argument ' + arg + ' needs a value.');
         process.exit();
