@@ -1,7 +1,7 @@
 
-![DHCPD.js](https://github.com/infusion/DHCP.js/blob/master/res/logo.png?raw=true "JavaScript DHCP Server")
+![node-dhcp](https://github.com/infusion/node-dhcp/blob/master/res/logo.png?raw=true "JavaScript DHCP Server")
 
-DHCP.js is a RFC compliant DHCP client and server implementation on top of node.js.
+node-dhcp is a RFC compliant DHCP client and server implementation on top of node.js.
 
 
 Motivation
@@ -21,7 +21,7 @@ These problems were the trigger to start reading the RFC's and the protocol is r
 Usage
 ===
 
-When installed globally, DHCP.js provides two executables, a client `dhcp` and a server `dhcpd`. The client simply retrieves network configuration from a DHCP server and prints the configuration after a complete handshake. All additional fields can be specified as list of arguments:
+When installed globally, node-dhcp provides two executables, a client `dhcp` and a server `dhcpd`. The client simply retrieves network configuration from a DHCP server and prints the configuration after a complete handshake. All additional fields can be specified as list of arguments:
 
 ```
 # sudo dhcp hostname
@@ -129,7 +129,7 @@ s.listen();
 
 Installation
 ===
-Installing DHCP.js is as easy as cloning this repo or use npmjs:
+Installing node-dhcp is as easy as cloning this repo or use npmjs:
 
 ```bash
 npm install --save dhcp

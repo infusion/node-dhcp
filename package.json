@@ -2,8 +2,8 @@
   "name": "dhcp",
   "title": "dhcp",
   "version": "0.0.0",
-  "homepage": "https://github.com/infusion/DHCP.js",
-  "bugs": "https://github.com/infusion/DHCP.js/issues",
+  "homepage": "https://github.com/infusion/node-dhcp",
+  "bugs": "https://github.com/infusion/node-dhcp/issues",
   "description": "A DHCP server written in JavaScript",
   "keywords": [
     "dhcp",
@@ -27,7 +27,7 @@
   "license": "MIT OR GPL-2.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/infusion/DHCP.js.git"
+    "url": "git://github.com/infusion/node-dhcp.git"
   },
   "bin": {
     "dhcp": "./bin/dhcp-cli.js",
