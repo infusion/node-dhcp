@@ -142,6 +142,12 @@ npm install dhcp -g
 ```
 
 
+Not yet implemented features
+===
+
+node-dhcp does not set timers already on the client to periodically send RENEW or REBIND messages. If you need this feature, please file a bug ticket.
+
+
 Troubleshooting
 ===
 
