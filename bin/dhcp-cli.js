@@ -45,10 +45,25 @@ if (path.basename(process.argv[1]).slice(-1) === 'd') {
 
   // Create a client
 
-  var client = dhcp.createClient();
-  
+  var client = dhcp.createClient({
+    features: argv._
+  });
+
+  client.on('bound', function () {
+
+    var opt = this._state.options;
+
+    // Print all requested options
+    for (var i in opt) {
+      console.log(i, ": ", opt[i] instanceof Array ? opt[i].join(", ") : opt[i]);
+    }
+
+    // Exit when finished
+    process.exit();
+  });
+
   client.listen();
 
+  // Send first handshake
   client.sendDiscover();
-
 }
