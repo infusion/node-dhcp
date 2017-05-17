@@ -44,6 +44,11 @@ s.on('message', function (data) {
   console.log(data);
 });
 
+s.on('bound', function() {
+  console.log("BOUND:");
+  console.log(this._state);
+});
+
 s.on("error", function (err, data) {
   console.log(err, data);
 });

@@ -23,6 +23,9 @@ Remark: By nature, network services are quite complex, so please test, test, tes
 Usage
 ===
 
+Command line
+---
+
 When installed globally, node-dhcp provides two executables, a client `dhcp` and a server `dhcpd`. The client simply retrieves network configuration from a DHCP server and prints the configuration after a complete handshake. All additional fields can be specified as list of arguments:
 
 ```
@@ -106,7 +109,7 @@ s.sendDiscover();
 Sniff DHCP Traffic
 ---
 
-For research purposes it's also possible to just get triggered when broadcast events occur. This way an own DHCP server can be implemented. It's also possible to just listen to the traffic in the network, without answering. This can be used to automate something, when a device enters the network: 
+For research purposes it's also possible to just get triggered when broadcast events occur. This way an own DHCP server can be implemented. It's also possible to just listen to the traffic on the network, without answering. This can be used to automate something, when a device enters the network: 
 
 ```
 var dhcp = require('dhcp');
