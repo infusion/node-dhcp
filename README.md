@@ -28,7 +28,7 @@ Command line
 
 When installed globally, node-dhcp provides two executables, a client `dhcp` and a server `dhcpd`. The client simply retrieves network configuration from a DHCP server and prints the configuration after a complete handshake. All additional fields can be specified as list of arguments:
 
-```
+```bash
 # sudo dhcp hostname
 
 // netmask :  255.255.255.0
@@ -40,7 +40,7 @@ When installed globally, node-dhcp provides two executables, a client `dhcp` and
 
 On the other hand, the server can be used to provide the data:
 
-```
+```bash
 sudo dhcpd --range 192.168.1.2-192.168.1.99 --hostname web392 --server 192.168.1.1 --router 192.168.1.1
 ```
 
@@ -109,9 +109,9 @@ s.sendDiscover();
 Sniff DHCP Traffic
 ---
 
-For research purposes it's also possible to just get triggered when broadcast events occur. This way an own DHCP server can be implemented. It's also possible to just listen to the traffic on the network, without answering. This can be used to automate something, when a device enters the network: 
+For research purposes it's also possible to just get triggered when broadcast events occur. This way an own DHCP server can be implemented. It's also possible to just listen to the traffic on the network, without answering. This can be used to automate something, when a device enters the network:
 
-```
+```js
 var dhcp = require('dhcp');
 
 var s = dhcp.createBroadcastHandler();
@@ -137,7 +137,7 @@ Installation
 Installing node-dhcp is as easy as cloning this repo or use npmjs:
 
 ```bash
-npm install --save dhcp
+npm install dhcp
 ```
 
 If command line tools `dhcp` and `dhcpd` shall be installed, npmjs can be used as well:
@@ -176,7 +176,7 @@ route add -host 255.255.255.255 dev eth0
 OS-X
 ---
 ```bash
-sudo route add -host 255.255.255.255 -interface en4 
+sudo route add -host 255.255.255.255 -interface en4
 ```
 
 
