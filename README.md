@@ -1,6 +1,10 @@
 
 ![node-dhcp](https://github.com/infusion/node-dhcp/blob/master/res/logo.png?raw=true "JavaScript DHCP Server")
 
+[![NPM Package](https://img.shields.io/npm/v/dhcp.svg?style=flat)](https://npmjs.org/package/dhcp "View this project on npm")
+[![Build Status](https://travis-ci.org/infusion/node-dhcp.svg?branch=master)](https://travis-ci.org/infusion/node-dhcp)
+[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+
 node-dhcp is a RFC compliant DHCP client and server implementation on top of node.js.
 
 
