@@ -3,7 +3,9 @@
   "title": "dhcp",
   "version": "0.2.0",
   "homepage": "https://github.com/infusion/node-dhcp",
-  "bugs": "https://github.com/infusion/node-dhcp/issues",
+  "bugs": {
+    "url": "https://github.com/infusion/node-dhcp/issues"
+  },
   "description": "A DHCP server written in JavaScript",
   "keywords": [
     "dhcp",
@@ -18,11 +20,14 @@
     "udp"
   ],
   "author": "Robert Eisele <robert@xarg.org> (http://www.xarg.org/)",
-  "main": "dhcp",
+  "main": "dhcp.js",
   "private": false,
   "readmeFilename": "README.md",
   "directories": {
-    "example": "examples"
+    "example": "./examples",
+    "bin": "./bin",
+    "lib": "./lib",
+    "test": "./tests"
   },
   "license": "MIT OR GPL-2.0",
   "repository": {
