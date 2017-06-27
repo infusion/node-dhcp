@@ -31,6 +31,7 @@ When installed globally, node-dhcp provides two executables, a client `dhcp` and
 ```bash
 # sudo dhcp hostname
 
+// output:
 // netmask :  255.255.255.0
 // router :  192.168.1.1
 // dns :  8.8.8.8, 8.8.4.4
@@ -109,7 +110,7 @@ s.sendDiscover();
 Sniff DHCP Traffic
 ---
 
-For research purposes it's also possible to just get triggered when broadcast events occur. This way an own DHCP server can be implemented. It's also possible to just listen to the traffic on the network, without answering. This can be used to automate something, when a device enters the network:
+For research purposes it's also possible to just get triggered when broadcast events occur. This way an own DHCP server can be implemented. It's also possible to just listen to the traffic on the network, without answering. This can be used to automate something when a device enters the network (you come back home from work and your mobile phone gets into wifi) or to spot malicious DHCP servers on the network:
 
 ```js
 var dhcp = require('dhcp');
