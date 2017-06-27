@@ -22,6 +22,7 @@ if (serve) {
     } else if (arg === 'range') {
       opts.range = argv[arg].split('-');
     } else if (Options.conf[arg] !== undefined) {
+
       // If value is missing, minimist simply makes it true/false
       if (typeof argv[arg] !== 'boolean') {
         opts[arg] = argv[arg];
