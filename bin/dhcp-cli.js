@@ -10,18 +10,18 @@ var argv = require('minimist')(process.argv.slice(2));
 var opts = {};
 var force = []; // We force all options here, since the user explicitly stated the option
 
-if (path.basename(process.argv[1]).slice(-1) === 'd') {
+var serve = path.basename(process.argv[1]).slice(-1) === 'd' || argv['serve']
+
+if (serve) {
 
   // Create a server
 
   for (var arg in argv) {
-
-    if (arg === '_') {
+    if (arg === '_' || arg === 'serve') {
       /* void */
     } else if (arg === 'range') {
       opts.range = argv[arg].split('-');
     } else if (Options.conf[arg] !== undefined) {
-
       // If value is missing, minimist simply makes it true/false
       if (typeof argv[arg] !== 'boolean') {
         opts[arg] = argv[arg];
