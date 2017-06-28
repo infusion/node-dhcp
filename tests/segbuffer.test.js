@@ -1,10 +1,10 @@
 var should = require('should');
 var SeqBuffer = require('../lib/seqbuffer.js');
 
-describe('Segbuffer', function () {
+describe('Segbuffer', function() {
 
 
-  it('should init correctly', function () {
+  it('should init correctly', function() {
 
     var sb = new SeqBuffer;
 
@@ -18,7 +18,7 @@ describe('Segbuffer', function () {
     sb._data.compare(new Buffer(20).fill(0)).should.be.equal(0);
   });
 
-  it('should add uint8', function () {
+  it('should add uint8', function() {
 
     var sb = new SeqBuffer(null, 20);
 
@@ -41,7 +41,7 @@ describe('Segbuffer', function () {
 
   });
 
-  it('should get uint8', function () {
+  it('should get uint8', function() {
 
     var sb = new SeqBuffer(new Buffer([1, 2, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
 
@@ -59,7 +59,7 @@ describe('Segbuffer', function () {
 
   });
 
-  it('should add uint16', function () {
+  it('should add uint16', function() {
 
     var sb = new SeqBuffer(null, 20);
 
@@ -82,7 +82,7 @@ describe('Segbuffer', function () {
 
   });
 
-  it('should get uint16', function () {
+  it('should get uint16', function() {
 
     var sb = new SeqBuffer(new Buffer([0, 1, 0, 2, 0, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
 
@@ -103,7 +103,7 @@ describe('Segbuffer', function () {
 
   });
 
-  it('should add uint32', function () {
+  it('should add uint32', function() {
 
     var sb = new SeqBuffer(null, 20);
 
@@ -126,7 +126,7 @@ describe('Segbuffer', function () {
 
   });
 
-  it('should get uint32', function () {
+  it('should get uint32', function() {
 
     var sb = new SeqBuffer(new Buffer([0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 99, 0, 0, 0, 0, 0, 0, 0, 0]));
 
@@ -147,7 +147,7 @@ describe('Segbuffer', function () {
 
   });
 
-  it('should add ascii', function () {
+  it('should add ascii', function() {
 
     var sb = new SeqBuffer(null, 20);
 
@@ -165,7 +165,7 @@ describe('Segbuffer', function () {
 
   });
 
-  it('should get ascii', function () {
+  it('should get ascii', function() {
 
     var sb = new SeqBuffer(new Buffer([97, 98, 99, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
 
@@ -175,7 +175,7 @@ describe('Segbuffer', function () {
     sb._w.should.be.equal(0);
   });
 
-  it('should add utf8', function () {
+  it('should add utf8', function() {
 
     var sb = new SeqBuffer(null, 20);
 
@@ -193,7 +193,7 @@ describe('Segbuffer', function () {
 
   });
 
-  it('should get utf8', function () {
+  it('should get utf8', function() {
 
     var sb = new SeqBuffer(new Buffer([0x69, 0xe2, 0x9d, 0xa4, 0x75, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
 
@@ -203,7 +203,7 @@ describe('Segbuffer', function () {
     sb._w.should.be.equal(0);
   });
 
-  it('should work with fixed string', function () {
+  it('should work with fixed string', function() {
 
     var sb = new SeqBuffer(Buffer.from('abcdefghij'));
 
@@ -229,7 +229,7 @@ describe('Segbuffer', function () {
     sb._data.compare(new Buffer([0x70, 0x71, 0x73, 0, 0, 0, 0, 0, 0x69, 0x6a])).should.be.equal(0);
   });
 
-  it('should add IPs', function () {
+  it('should add IPs', function() {
 
     var sb = new SeqBuffer(null, 20);
 
@@ -241,7 +241,7 @@ describe('Segbuffer', function () {
     sb._data.compare(new Buffer([1, 2, 3, 4, 8, 8, 8, 8, 192, 255, 238, 238, 0, 0, 0, 0, 0, 0, 0, 0])).should.be.equal(0);
   });
 
-  it('should get IPs', function () {
+  it('should get IPs', function() {
 
     var sb = new SeqBuffer(new Buffer([1, 2, 3, 4, 8, 8, 8, 8, 192, 255, 238, 238, 0, 0, 0, 0, 0, 0, 0, 0]));
 
@@ -251,7 +251,7 @@ describe('Segbuffer', function () {
     sb._w.should.be.equal(0);
   });
 
-  it('should add Mac', function () {
+  it('should add Mac', function() {
 
     var sb = new SeqBuffer(null, 20);
 
@@ -264,7 +264,7 @@ describe('Segbuffer', function () {
 
   });
 
-  it('should add Mac with offsetted word', function () {
+  it('should add Mac with offsetted word', function() {
 
     var sb = new SeqBuffer(null, 20);
 
@@ -278,29 +278,29 @@ describe('Segbuffer', function () {
     sb._data.compare(new Buffer([0, 4, 1, 2, 3, 4, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])).should.be.equal(0);
   });
 
-  it('should get Mac', function () {
+  it('should get Mac', function() {
 
     var sb = new SeqBuffer(new Buffer([1, 2, 3, 4, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
 
-    sb.getMAC().should.be.equal('01-02-03-04-05-06');
+    sb.getMAC(1, 6).should.be.equal('01-02-03-04-05-06');
 
     sb._r.should.be.equal(16);
     sb._w.should.be.equal(0);
   });
 
-  it('should get Mac with offsetted byte', function () {
+  it('should get Mac with offsetted byte', function() {
 
     var sb = new SeqBuffer(new Buffer([0, 0xff, 0xff, 0xff, 0xff, 0xce, 0xff, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]));
 
     sb.getUInt8();
 
-    sb.getMAC().should.be.equal('FF-FF-FF-FF-CE-FF');
+    sb.getMAC(1, 6).should.be.equal('FF-FF-FF-FF-CE-FF');
 
     sb._r.should.be.equal(17);
     sb._w.should.be.equal(0);
   });
 
-  it('should add mixed options - 1st', function () {
+  it('should add mixed options - 1st', function() {
 
     var sb = new SeqBuffer(null, 30);
 
@@ -320,7 +320,7 @@ describe('Segbuffer', function () {
   });
 
 
-  it('should get mixed options - 1st', function () {
+  it('should get mixed options - 1st', function() {
 
     var sb = new SeqBuffer(new Buffer([
       1, 4, 1, 2, 3, 4,
@@ -339,7 +339,7 @@ describe('Segbuffer', function () {
     sb._w.should.be.equal(0);
   });
 
-  it('should add mixed options - 2nd', function () {
+  it('should add mixed options - 2nd', function() {
 
     var sb = new SeqBuffer(null, 21);
 
@@ -359,7 +359,7 @@ describe('Segbuffer', function () {
       145, 3, 1, 2, 3])).should.be.equal(0);
   });
 
-  it('should get mixed options - 2st', function () {
+  it('should get mixed options - 2st', function() {
 
     var sb = new SeqBuffer(new Buffer([
       54, 4, 192, 168, 2, 2,
@@ -379,7 +379,7 @@ describe('Segbuffer', function () {
     sb._w.should.be.equal(0);
   });
 
-  it('should add UInt16s options', function () {
+  it('should add UInt16s options', function() {
 
     var sb = new SeqBuffer(null, 10);
 
@@ -390,8 +390,8 @@ describe('Segbuffer', function () {
     sb._data.compare(new Buffer([
       25, 6, 0, 1, 0, 2, 0, 3, 0, 0])).should.be.equal(0);
   });
-  
-    it('should get UInt16s options', function () {
+
+  it('should get UInt16s options', function() {
 
     var sb = new SeqBuffer(new Buffer([
       25, 6, 0, 1, 0, 2, 0, 3, 0, 0]));
@@ -404,7 +404,7 @@ describe('Segbuffer', function () {
     sb._w.should.be.equal(0);
   });
 
-  it('should add nothing for empty options', function () {
+  it('should add nothing for empty options', function() {
 
     var sb = new SeqBuffer(new Buffer(20).fill(32));
 
@@ -415,7 +415,7 @@ describe('Segbuffer', function () {
     sb._data.compare(new Buffer(20).fill(32)).should.be.equal(0);
   });
 
-  it('should get hex correctly', function () {
+  it('should get hex correctly', function() {
 
     var sb = new SeqBuffer(new Buffer([1, 2, 3, 4, 5, 6, 7, 8, 9]));
 

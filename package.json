@@ -1,7 +1,7 @@
 {
   "name": "dhcp",
   "title": "dhcp",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "homepage": "https://github.com/infusion/node-dhcp",
   "bugs": {
     "url": "https://github.com/infusion/node-dhcp/issues"
