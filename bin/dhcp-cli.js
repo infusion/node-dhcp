@@ -4,70 +4,29 @@ process.title = 'node-dhcp';
 
 var path = require('path');
 var dhcp = require('../lib/dhcp.js');
-var Options = require('../lib/options.js');
 var argv = require('minimist')(process.argv.slice(2));
 
-var opts = {};
-var force = []; // We force all options here, since the user explicitly stated the option
 
-var serve = path.basename(process.argv[1]).slice(-1) === 'd' || argv['serve']
+// Create a client
 
-if (serve) {
+var client = dhcp.createClient({
+features: argv._
+});
 
-  // Create a server
+client.on('bound', function () {
 
-  for (var arg in argv) {
-    if (arg === '_' || arg === 'serve') {
-      /* void */
-    } else if (arg === 'range') {
-      opts.range = argv[arg].split('-');
-    } else if (Options.conf[arg] !== undefined) {
+var opt = this._state.options;
 
-      // If value is missing, minimist simply makes it true/false
-      if (typeof argv[arg] !== 'boolean') {
-        opts[arg] = argv[arg];
-        force.push(argv[arg]);
-      } else {
-        console.error('Argument ' + arg + ' needs a value.');
-        process.exit();
-      }
-
-    } else if (arg === 'help') {
-      console.log('Usage:\n\tdhcpd --range 192.168.0.1-192.168.0.99 --option1 value1 --option2 value2 ...');
-      process.exit();
-    } else {
-      console.error('Invalid argument ' + arg);
-      process.exit();
-    }
-  }
-
-  var server = dhcp.createServer(opts);
-
-  server.listen();
-
-} else {
-
-  // Create a client
-
-  var client = dhcp.createClient({
-    features: argv._
-  });
-
-  client.on('bound', function () {
-
-    var opt = this._state.options;
-
-    // Print all requested options
-    for (var i in opt) {
-      console.log(i, ": ", opt[i] instanceof Array ? opt[i].join(", ") : opt[i]);
-    }
-
-    // Exit when finished
-    process.exit();
-  });
-
-  client.listen();
-
-  // Send first handshake
-  client.sendDiscover();
+// Print all requested options
+for (var i in opt) {
+  console.log(i, ": ", opt[i] instanceof Array ? opt[i].join(", ") : opt[i]);
 }
+
+// Exit when finished
+process.exit();
+});
+
+client.listen();
+
+// Send first handshake
+client.sendDiscover();

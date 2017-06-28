@@ -36,7 +36,7 @@
   },
   "bin": {
     "dhcp": "./bin/dhcp-cli.js",
-    "dhcpd": "./bin/dhcp-cli.js"
+    "dhcpd": "./bin/dhcpd-cli.js"
   },
   "engines": {
     "node": "*"
