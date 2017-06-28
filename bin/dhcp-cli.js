@@ -1,5 +1,11 @@
 #!/usr/bin/env node
 
+/*
+ * Example:
+ * 
+ * $ dhcp hostname dns --mac 12:34:55:67:88:99
+ */
+
 process.title = 'node-dhcp';
 
 var dhcp = require('../lib/dhcp.js');
