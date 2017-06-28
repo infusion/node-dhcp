@@ -20,7 +20,7 @@
     "udp"
   ],
   "author": "Robert Eisele <robert@xarg.org> (http://www.xarg.org/)",
-  "main": "dhcp.js",
+  "main": "lib/dhcp.js",
   "private": false,
   "readmeFilename": "README.md",
   "directories": {
