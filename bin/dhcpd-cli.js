@@ -2,7 +2,6 @@
 
 process.title = 'node-dhcp';
 
-var path = require('path');
 var dhcp = require('../lib/dhcp.js');
 var Options = require('../lib/options.js');
 var argv = require('minimist')(process.argv.slice(2));

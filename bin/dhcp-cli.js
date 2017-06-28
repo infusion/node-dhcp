@@ -2,7 +2,6 @@
 
 process.title = 'node-dhcp';
 
-var path = require('path');
 var dhcp = require('../lib/dhcp.js');
 var argv = require('minimist')(process.argv.slice(2));
 
@@ -12,7 +11,7 @@ var client = dhcp.createClient({
   features: argv._
 });
 
-client.on('bound', function () {
+client.on('bound', function() {
 
   var opt = this._state.options;
 
