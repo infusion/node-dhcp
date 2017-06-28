@@ -7,9 +7,12 @@ var argv = require('minimist')(process.argv.slice(2));
 
 // Create a client
 
-var client = dhcp.createClient({
-  features: argv._
-});
+// minimist pushes all features, without "--" to the "_" key.
+// We need the list of features on "features" and all other options passed as is.
+// Easist way to do this is this:
+argv.features = argv._;
+
+var client = dhcp.createClient(argv);
 
 client.on('bound', function() {
 
