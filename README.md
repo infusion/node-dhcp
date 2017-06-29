@@ -94,9 +94,9 @@ var dhcp = require('dhcp');
 
 var s = dhcp.createClient();
 
-s.on('bound', function () {
+s.on('bound', function (state) {
 
-  console.log("State: ", this._state);
+  console.log("State: ", state);
 
   // Configure your host system, based on the current state:
   // `ip address add IP/MASK dev eth0`
