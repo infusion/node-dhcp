@@ -30,17 +30,17 @@ Usage
 Command line
 ---
 
-When installed globally, node-dhcp provides two executables, a client `dhcp` and a server `dhcpd`. The client simply retrieves network configuration from a DHCP server and prints the configuration after a complete handshake. All additional fields can be specified as list of arguments:
+When installed globally, node-dhcp provides two executables, a client `dhcp` and a server `dhcpd`. The client simply retrieves network configuration from a DHCP server and prints the configuration after a complete handshake. All additional (defined in `lib/options.js`) fields can be specified as list of arguments:
 
 ```bash
-# sudo dhcp hostname
+# sudo dhcp hostname [--mac 12:23:34:45:56:67]
 
-// output:
-// netmask :  255.255.255.0
-// router :  192.168.1.1
-// dns :  8.8.8.8, 8.8.4.4
-// server :  192.168.1.1
-// hostname :  web392
+output:
+netmask :  255.255.255.0
+router :  192.168.1.1
+dns :  8.8.8.8, 8.8.4.4
+server :  192.168.1.1
+hostname :  web392
 ```
 
 On the other hand, the server can be used to provide the data:
@@ -49,7 +49,7 @@ On the other hand, the server can be used to provide the data:
 sudo dhcpd --range 192.168.1.2-192.168.1.99 --hostname web392 --server 192.168.1.1 --router 192.168.1.1
 ```
 
-The more powerful interface however, is the JavaScript API.
+All available options can be found in `lib/options.js`. The more powerful interface however, is the JavaScript API.
 
 Simple DHCP Server
 ---
