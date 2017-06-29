@@ -20,9 +20,9 @@ argv.features = argv._;
 
 var client = dhcp.createClient(argv);
 
-client.on('bound', function() {
+client.on('bound', function(state) {
 
-  var opt = this._state.options;
+  var opt = state.options;
 
   // Print all requested options
   for (var i in opt) {

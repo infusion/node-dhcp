@@ -16,9 +16,9 @@ s.on('listening', function (sock) {
   console.info('Client Listening: ' + address.address + ':' + address.port);
 });
 
-s.on('bound', function () {
+s.on('bound', function (state) {
 
-  console.log("State: ", this._state);
+  console.log("State: ", state);
 
   // `ip address add IP/MASK dev eth0`
   // `echo HOSTNAME > /etc/hostname && hostname HOSTNAME`
