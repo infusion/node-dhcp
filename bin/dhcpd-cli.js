@@ -11,10 +11,6 @@ var force = []; // We force all options here, since the user explicitly stated t
 
 // Create a server
 
-dhcp.on('bound', function(state) {
-  console.log(state);
-});
-
 for (var arg in argv) {
   if (arg === '_') {
     /* void */
@@ -41,5 +37,9 @@ for (var arg in argv) {
 }
 
 var server = dhcp.createServer(opts);
+
+server.on('bound', function(state) {
+  console.log(state);
+});
 
 server.listen();
