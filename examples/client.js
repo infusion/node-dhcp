@@ -24,7 +24,7 @@ s.on('bound', function (state) {
   // `echo HOSTNAME > /etc/hostname && hostname HOSTNAME`
   // `ip route add default via 192.168.1.254`
   // `sysctl -w net.inet.ip.forwarding=1`
-
+  s.close();
 });
 
 s.listen();
