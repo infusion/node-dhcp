@@ -58,4 +58,12 @@ s.on("listening", function (sock) {
   console.info('Server Listening: ' + address.address + ':' + address.port);
 });
 
+s.on("close", function () {
+  console.log('close');
+});
+
 s.listen();
+
+process.on('SIGINT', () => {
+    s.close();
+});
