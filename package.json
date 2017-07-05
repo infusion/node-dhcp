@@ -49,6 +49,7 @@
     "should": "*"
   },
   "dependencies": {
-    "minimist": "*"
+    "minimist": "*",
+    "properties-parser": "^0.3.1"
   }
 }
