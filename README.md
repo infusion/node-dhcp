@@ -152,6 +152,17 @@ npm install dhcp -g
 ```
 
 
+Configuration
+===
+
+Besides options listed in the `lib/options.js` file (with the `config` key), a few global options can be used:
+
+- `range`: Two element array, representing the IP range the server operates on
+- `forceOptions`: Array of options that are forced to be sent
+- `static`: A static IP binding object of the form `mac -> ip`
+
+
+
 Not yet implemented features
 ===
 
