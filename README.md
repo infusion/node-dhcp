@@ -15,7 +15,7 @@ A DHCP server can be used to configure the entire local network. Typical paramet
 
 I was searching for a minimalistic DHCP server, which is robust and highly configurable. The first problem I had was: I wanted to deliver an IP address to a Raspberry PI without static configuration right out of my Macbook. However, Apple made it almost impossible to configure the onboard DHCP-server with newer versions of OSX.
 
-In times of **home automation** and **IoT**, I was thinking of a solution, which can trigger something when I come home. DHCP is a good idea here, since any device will broadcast to the network, as soon as it connects. So why not playing the imperial march when you come back home?
+The second motivation was this. In times of **home automation** and **IoT**, I was thinking of a solution, which can trigger something when I come home. DHCP is a good idea here, since any device will broadcast to the network, as soon as it connects. So why not playing the imperial march when you come back home?
 
 Another problem I had was, I wanted to query DHCP servers without actually change the local configuration.
 
