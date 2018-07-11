@@ -39,7 +39,7 @@
     "dhcpd": "./bin/dhcpd-cli.js"
   },
   "engines": {
-    "node": "*"
+    "node": ">=5.10.0"
   },
   "scripts": {
     "test": "mocha tests/*.js"
