@@ -210,7 +210,7 @@ describe('Segbuffer', function() {
     sb._r.should.be.equal(0);
     sb._w.should.be.equal(0);
 
-    sb.addASCII('pqs', 8);
+    sb.addASCIIPad('pqs', 8);
 
     sb._r.should.be.equal(0);
     sb._w.should.be.equal(8);
@@ -221,7 +221,7 @@ describe('Segbuffer', function() {
     sb._w = 0;
 
     // Same with UTF8
-    sb.addUTF8('pqs', 8);
+    sb.addUTF8Pad('pqs', 8);
 
     sb._r.should.be.equal(0);
     sb._w.should.be.equal(8);
