@@ -6,6 +6,7 @@ var dhcp = require('../lib/dhcp.js');
 var Options = require('../lib/options.js');
 var argv = require('minimist')(process.argv.slice(2));
 
+var bind = null;
 var opts = {};
 var force = []; // We force all options here, since the user explicitly stated the option
 
@@ -14,6 +15,8 @@ var force = []; // We force all options here, since the user explicitly stated t
 for (var arg in argv) {
   if (arg === '_') {
     /* void */
+  } else if (arg === 'bind') {
+    bind = argv[arg];
   } else if (arg === 'range') {
     opts.range = argv[arg].split('-');
   } else if (Options.conf[arg] !== undefined) {
@@ -42,4 +45,4 @@ server.on('bound', function(state) {
   console.log(state);
 });
 
-server.listen();
+server.listen(null, bind);
