@@ -7,7 +7,6 @@
 
 node-dhcp is a RFC compliant DHCP client and server implementation on top of node.js.
 
-
 Motivation
 ===
 
@@ -22,7 +21,6 @@ Another problem I had was, I wanted to query DHCP servers without actually chang
 These problems were the trigger to start reading the RFC's and the protocol is really not that complicated. As such, this project was born.
 
 Remark: By nature, network services are quite complex, so please test, test, test!
-
 
 Usage
 ===
@@ -141,12 +139,51 @@ s.on('message', function (data) {
 s.listen();
 ```
 
+Docker
+===
 
+Quick test
+---
 
+```bash
+# Build the image
+docker build -t infusion/node-dhcp:0 .
+# Start the server
+docker run -d --name dhcpd infusion/node-dhcp:0
+# Start a client in the container (and send process to background)
+docker exec dhcpd dhcp hostname --mac 12:23:34:45:56:67 &
+# Show the server logs
+docker logs dhcpd
+```
 
+Configuration assuming Host broadcast
+---
+
+Assuming the dhcp server is on a broadcast network:
+
+```bash
+# Build the image
+docker build -t infusion/node-dhcp:0 .
+# Start the server
+docker run --net=host -d --name dhcpd infusion/node-dhcp:0
+```
+
+Configuration assuming router DHCP relay
+---
+
+Assuming a router is relaying DHCP to multiple IP addresses on server host:
+
+```bash
+# Build the image
+docker build -t infusion/node-dhcp:0 .
+# Start the servers
+docker run -p the.host.ip:67:67/udp -d --name dhcpd1 infusion/node-dhcp:0
+docker run -p other.host.ip:67:67/udp -d --name dhcpd2 infusion/node-dhcp:0
+```
 
 Installation
 ===
+
 Installing node-dhcp is as easy as cloning this repo or use npmjs:
 
 ```bash
@@ -169,13 +206,10 @@ Besides options listed in the `lib/options.js` file (with the `config` key), a f
 - `forceOptions`: Array of options that are forced to be sent
 - `static`: A static IP binding object of the form `mac -> ip`
 
-
-
 Not yet implemented features
 ===
 
 node-dhcp does not set timers already on the client to periodically send RENEW or REBIND messages. If you need this feature, please file a bug ticket.
-
 
 Troubleshooting
 ===
@@ -185,7 +219,6 @@ EACCESS Error
 
 Since the programs need to bind to port 67 and 68, root privileges are required. If you want to use dhcp and dhcpd without root privileges, change the port to something above 1024.
 
-
 No data is received
 ---
 
@@ -193,19 +226,21 @@ A broadcast is typically not spread across all interfaces. In order to route the
 
 Linux
 ---
+
 ```bash
 route add -host 255.255.255.255 dev eth0
 ```
 
 OS-X
 ---
+
 ```bash
 sudo route add -host 255.255.255.255 -interface en4
 ```
 
-
 Testing
 ===
+
 If you plan to enhance the library, make sure you add test cases and all the previous tests are passing. You can test the library with
 
 ```bash
@@ -214,5 +249,6 @@ npm test
 
 Copyright and licensing
 ===
+
 Copyright (c) 2017, [Robert Eisele](http://www.xarg.org/)
 Dual licensed under the MIT or GPL Version 2 licenses.
