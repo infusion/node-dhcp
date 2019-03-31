@@ -28,7 +28,7 @@ var s = dhcpd.createServer({
   leaseTime: 86400,
   renewalTime: 60,
   rebindingTime: 120,
-  bootFile: function (req, res) {
+  bootFile: function(req, res) {
 
     // res.ip - the actual ip allocated for the client
 
@@ -40,7 +40,7 @@ var s = dhcpd.createServer({
   }
 });
 
-s.on('message', function (data) {
+s.on('message', function(data) {
   console.log(data);
 });
 
@@ -49,21 +49,21 @@ s.on('bound', function(state) {
   console.log(state);
 });
 
-s.on("error", function (err, data) {
+s.on("error", function(err, data) {
   console.log(err, data);
 });
 
-s.on("listening", function (sock) {
+s.on("listening", function(sock) {
   var address = sock.address();
   console.info('Server Listening: ' + address.address + ':' + address.port);
 });
 
-s.on("close", function () {
+s.on("close", function() {
   console.log('close');
 });
 
 s.listen();
 
 process.on('SIGINT', () => {
-    s.close();
+  s.close();
 });
