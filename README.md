@@ -245,7 +245,7 @@ A wide range of options are already implemented. Custom options can be defined w
 
 ```js
 const dhcpd = require("dhcp")
-dhcp.addOption(123, {
+dhcpd.addOption(123, {
 config: "testConfig",
 type: "ASCII",
 name: "Test Option"
