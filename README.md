@@ -238,6 +238,20 @@ OS-X
 sudo route add -host 255.255.255.255 -interface en4
 ```
 
+DHCP Options
+---
+
+A wide range of options are already implemented. Custom options can be defined with
+
+```js
+const dhcpd = require("dhcp")
+dhcp.addOption(123, {
+config: "testConfig",
+type: "ASCII",
+name: "Test Option"
+});
+```
+
 Testing
 ===
 
