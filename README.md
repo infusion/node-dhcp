@@ -63,7 +63,7 @@ var s = dhcp.createServer({
   forceOptions: ['hostname'], // Options that need to be sent, even if they were not requested
   randomIP: true, // Get random new IP from pool instead of keeping one ip
   static: {
-    "11-22-33-44-55-66": "192.168.3.100"
+    "11:22:33:44:55:66": "192.168.3.100"
   },
 
   // Option settings (there are MUCH more)
