@@ -1,11 +1,22 @@
 
 ![node-dhcp](https://github.com/infusion/node-dhcp/blob/master/res/logo.png?raw=true "JavaScript DHCP Server")
 
-[![NPM Package](https://img.shields.io/npm/v/dhcp.svg?style=flat)](https://npmjs.org/package/dhcp "View this project on npm")
-[![Build Status](https://travis-ci.org/infusion/node-dhcp.svg?branch=master)](https://travis-ci.org/infusion/node-dhcp)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
 node-dhcp is a RFC compliant DHCP client and server implementation on top of node.js.
+
+
+UPDATES
+===
+*Fixed Static IP handling with MAC address at examples/server.js
+*Fixed DHCP Offer message *in work* for Microsoft devices (fails to get DHCP Offer message right)
+*Fixed to send 'hostname' option too via DHCP Offer message right way
+
+
+*Keep it simple always
+
+
+
 
 Motivation
 ===
@@ -206,10 +217,9 @@ Besides options listed in the `lib/options.js` file (with the `config` key), a f
 - `forceOptions`: Array of options that are forced to be sent
 - `static`: A static IP binding object of the form `mac -> ip`
 
-Not yet implemented features
-===
 
-node-dhcp does not set timers already on the client to periodically send RENEW or REBIND messages. If you need this feature, please file a bug ticket.
+
+
 
 Troubleshooting
 ===
@@ -223,6 +233,9 @@ No data is received
 ---
 
 A broadcast is typically not spread across all interfaces. In order to route the broadcast to a specific interface, you can reroute 255.255.255.255.
+
+
+*macOS Sierra i haven't needed route but left still if someone needs -XantheFIN 
 
 Linux
 ---
@@ -252,14 +265,7 @@ name: "Test Option"
 });
 ```
 
-Testing
-===
 
-If you plan to enhance the library, make sure you add test cases and all the previous tests are passing. You can test the library with
-
-```bash
-npm test
-```
 
 Copyright and licensing
 ===
