@@ -6,7 +6,7 @@
 node-dhcp is a RFC compliant DHCP client and server implementation on top of node.js.
 
 
-UPDATES
+UPDATES - XantheFIN
 ===
 *Fixed Static IP handling with MAC address at examples/server.js
 
@@ -20,6 +20,8 @@ UPDATES
 *If you need on macOS Sierra or later to have internet shared over this subnet it is possible. Just send me msg - XantheFIN*
 
 
+
+Big thanks to original developer(s) :)
 
 
 
