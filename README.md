@@ -17,6 +17,9 @@ UPDATES
 
 *Keep it simple always
 
+*If you need on macOS Sierra or later to have internet shared over this subnet it is possible. Just send me msg - XantheFIN*
+
+
 
 
 
