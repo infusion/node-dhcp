@@ -9,7 +9,9 @@ node-dhcp is a RFC compliant DHCP client and server implementation on top of nod
 UPDATES
 ===
 *Fixed Static IP handling with MAC address at examples/server.js
+
 *Fixed DHCP Offer message *in work* for Microsoft devices (fails to get DHCP Offer message right)
+
 *Fixed to send 'hostname' option too via DHCP Offer message right way
 
 
