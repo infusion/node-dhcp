@@ -1,7 +1,7 @@
 
-var dhcpd = require('../lib/dhcp.js');
+var dhcp = require('dhcp.js');
 
-var s = dhcpd.createServer({
+var s = dhcp.createServer({
   // System settings
   range: [
     "192.168.3.10", "192.168.3.99"
