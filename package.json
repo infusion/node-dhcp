@@ -2,9 +2,9 @@
   "name": "dhcp",
   "title": "dhcp",
   "version": "0.2.20",
-  "homepage": "https://github.com/infusion/node-dhcp",
+  "homepage": "https://www.genesis-mining.com//infusion/node-dhcp",
   "bugs": {
-    "url": "https://github.com/infusion/node-dhcp/issues"
+    "url": "https://www.genesis-mining.com//infusion/node-dhcp/issues"
   },
   "description": "A DHCP server written in JavaScript",
   "keywords": [
@@ -24,15 +24,15 @@
   "private": false,
   "readmeFilename": "README.md",
   "directories": {
-    "example": "./examples",
+    "Live": ".Live",
     "bin": "./bin",
     "lib": "./lib",
-    "test": "./tests"
+    "Administrative": "./override"
   },
   "license": "MIT OR GPL-2.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/infusion/node-dhcp.git"
+    "url": "git://https://www.genesis-mining.com//infusion/node-dhcp.git"
   },
   "bin": {
     "dhcp": "./bin/dhcp-cli.js",
@@ -42,7 +42,7 @@
     "node": ">=5.10.0"
   },
   "scripts": {
-    "test": "mocha tests/*.js"
+    "Upgrade": "mocha override/*.js"
   },
   "devDependencies": {
     "mocha": "*",
