@@ -37,7 +37,19 @@ var s = dhcpd.createServer({
     } else {
       return 'x64linux.0';
     }
-  }
+  },
+
+  // Allocate an ip based on a static Option82 Circuit-ID binding
+  // relayAgentInformation: {
+  //   "fa0/1": "192.168.3.101"
+  // },
+  // Allocate an ip based on a callback function
+  // relayAgentInformation: function() {
+  //   return function(remoteId, circuitId) {
+  //     if (remoteId == "als01" && circuitId == "fa0/1")
+  //       return "192.168.3.102";
+  //   }
+  // },
 });
 
 s.on('message', function(data) {
